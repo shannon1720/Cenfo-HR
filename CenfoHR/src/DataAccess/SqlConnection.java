@@ -12,6 +12,9 @@ import java.sql.*;
 public class SqlConnection {
     String connectionUrl = "jdbc:sqlserver://SHANNON1720;DatabaseName=DB_CENFO_HR;integratedsecurity = true";
     
+    //String de connecion de Daniela >> String connectionUrl = "jdbc:sqlserver://SHANNON1720;DatabaseName=DB_CENFO_HR;integratedsecurity = true";
+    //String de connecion de Francisco >> "jdbc:sqlserver://localhost:1433;databaseName=DBPrueba;user=sa;password=reallyStrongPwd123";
+    
     protected Connection conn = null;
     protected Statement stmt = null;
     protected ResultSet rs = null;
