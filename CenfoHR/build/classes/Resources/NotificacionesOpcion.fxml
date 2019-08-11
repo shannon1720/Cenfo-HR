@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pnlNotificaciones" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="1095.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.NotificacionesController">
+   <children>
+      <Label layoutX="502.0" layoutY="173.0" text="¿Qué desea enviar?">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnHorasEntra" layoutX="383.0" layoutY="216.0" mnemonicParsing="false" onAction="#horasExtra" prefHeight="25.0" prefWidth="154.0" style="-fx-background-color: #009688;" text="Reportar horas extra" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnPermisoSalida" layoutX="616.0" layoutY="216.0" mnemonicParsing="false" onAction="#permisoSalida" prefHeight="25.0" prefWidth="154.0" style="-fx-background-color: #009688;" text="Permiso de salida" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
