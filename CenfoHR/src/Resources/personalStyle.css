@@ -1,0 +1,31 @@
+#personalPane,#menuPane{
+    -fx-background-color: #FFFFFF;
+}
+
+#personalInternalPane{
+    -fx-background-color: #009688;
+}
+
+#fontRegistro{
+    -fx-text-fill:white;
+    -fx-font-size: 34px;
+}
+
+#campoDeTexto{
+    -fx-pref-width: 328px;
+    -fx-pref-height :53px;
+}
+
+#botones{
+    -fx-background-color: #009688;
+    -fx-pref-width	: 96px;
+    -fx-pref-height :42px;
+    -fx-text-fill:white;
+}
+
+#botonesArchivos{
+    -fx-background-color: #009688;
+    -fx-pref-width: 216px;
+    -fx-pref-height :33px;
+    -fx-text-fill:white;
+}
