@@ -147,66 +147,6 @@ public class PersonaController implements Initializable {
     }
 
     @FXML
-
-    public void buscarDocumento(ActionEvent event) {
-        FileChooser fc = new FileChooser();
-        File selectFile = fc.showOpenDialog(null);
-        if (selectFile != null) {
-            tfUrlDocumento.setText(selectFile.getPath());
-        }
-    }
-
-    @FXML
-    public void enviarDatos(ActionEvent event) {
-
-        int rol = 0, grado = 0;
-        if (cbRol.getValue().equals("Administrador")) {
-            rol = 1;
-        } else {
-            if (cbRol.getValue().equals("Supervisor")) {
-                rol = 2;
-            } else {
-                if (cbRol.getValue().equals("Supervisor")) {
-                    rol = 3;
-                }
-            }
-        }
-        if (cbGradoAcademico.getValue().equals("Bachillerato")) {
-            grado = 1;
-        } else {
-            if (cbGradoAcademico.getValue().equals("Diplomado")) {
-                grado = 2;
-            } else {
-                if (cbGradoAcademico.getValue().equals("Técnico")) {
-                    grado = 3;
-                }
-            }
-        }
-
-        MediaPersonal mimedia = new MediaPersonal();
-        mimedia.setTipo("Docuemento xls");
-        mimedia.setUrl(tfUrlDocumento.getText());
-        Personal miPersonal = new Personal(tfIdentificacion.getText(), tfNombre.getText(), tfApellidoUno.getText(), tfApellidoSegundo.getText(), Date.from(tfNacimiento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), Date.from(tfEntrada.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), cbGenero.getValue(), tfClave.getText(), rol, grado, mimedia);
-        String mensaje =(String)mipersonal.crearObjeto(miPersonal);
-        
-    }
-
-    @FXML
-    public void ingresaSesion(ActionEvent event) throws Exception {
-
-        Personal miPersonal2 = new Personal(), miPersonal;
-        miPersonal2.setIdentificacion(tfCorreo.getText());
-        miPersonal2.setContrasenna(tfContraseña.getText());
-        miPersonal = (Personal) mipersonal.buscarObjeto(miPersonal2);
-        if (miPersonal != null) {
-            if (miPersonal.getRol() == 3) {
-                AnchorPane pane1 = FXMLLoader.load(getClass().getResource("/Resources/UiEmpleado.fxml"));
-                pnlInicioSesion.getChildren().setAll(pane1);
-            } else {
-                if (miPersonal.getRol() == 2 || miPersonal.getRol() == 1) {
-                    AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/Resources/UiSuperior.fxml"));
-                    pnlInicioSesion.getChildren().setAll(pane2);
-
     public void ingresaSesion(ActionEvent event) throws Exception {
 
         Entities.Personal miPersonal2 = new Personal(), miPersonal;
@@ -231,16 +171,7 @@ public class PersonaController implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        
-        obtenerDatos();
-    }
-
-    private void obtenerDatos() {
-        ObservableList<String> pTiposDeRol = FXCollections.observableArrayList("Administrador", "Supervisor", "Empleado");
-        cbRol.setItems(pTiposDeRol);
-
-        ObservableList<String> pTiposDeGrado = FXCollections.observableArrayList("Bachillerato", "Diplomado", "Técnico");
-        cbGradoAcademico.setItems(pTiposDeGrado);
+        //TODO
     }
 
     @FXML

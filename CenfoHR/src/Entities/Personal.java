@@ -5,33 +5,11 @@
  */
 package Entities;
 import java.util.Date;
-
 /**
  *
  * @author Alriosa
  */
 public class Personal {
-
-   private String identificacion;
-   private String nombre;
-   private String apellidoUno;
-   private String apellidoDos;
-   private Date fechaNacimiento;
-   private Date fechaIngreso;
-   private String genero;
-   private String contrasenna;
-   private int rol;
-   private int grado_academico;
-   private MediaPersonal miMedia;
-   private static Personal mipersonal=null;
-   public Personal() {
-   }
-public  static Personal getPersonal(String identificacion, String nombre, String apellidoUno, String apellidoDos, Date fechaNacimiento, Date fechaIngreso, String genero, String contrasenna, int rol, int grado_academico, MediaPersonal miMedia) {
-		if (mipersonal == null) {
-			mipersonal = new Personal(identificacion,nombre,apellidoUno,apellidoDos,fechaNacimiento,fechaIngreso,genero, contrasenna,rol, grado_academico,miMedia);
-		}
-		return mipersonal;
-	 }
 
     private String identificacion;
     private String nombre;

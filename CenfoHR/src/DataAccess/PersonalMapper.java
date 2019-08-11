@@ -116,7 +116,6 @@ public class PersonalMapper extends SqlConnection implements Fabrica {
 
     @Override
     public ArrayList<Object> listarObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Personal miPersonal = null;
        String consulta = "{Call dbo.listar_personal()}";
        ArrayList<Object> listaPersonal =new ArrayList<>();
