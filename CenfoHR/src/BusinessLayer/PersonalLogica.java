@@ -13,19 +13,19 @@ import java.util.ArrayList;
  *
  * @author Alriosa
  */
-public class PersonalLogica implements leaf{
+public class PersonalLogica implements Fabrica{
     ArrayList<Personal> lstPersonal=new ArrayList<>();
     private PersonalMapper miPersona= new PersonalMapper();
     public PersonalLogica() {
     }
     @Override
     public Object crearObjeto(Object miObjeto) {
-        return miPersona.crearPersonal(miObjeto);
+        return miPersona.crearObjeto(miObjeto);
     }
 
     @Override
     public Object buscarObjeto(Object miObjeto) {
-        return miPersona.buscarPersona(miObjeto);
+        return miPersona.buscarObjeto(miObjeto);
     }
 
     @Override
