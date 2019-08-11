@@ -5,7 +5,6 @@
  */
 package DataAccess;
 
-import Entities.Notificacion;
 import java.sql.DriverManager;
 import Entities.Pagos;
 import java.util.ArrayList;

@@ -11,7 +11,7 @@ import DataAccess.*;
  *
  * @author franciscosandoval
  */
-public class prueba {
+public class pruebaFrancisco {
 
     /**
      * @param args the command line arguments
