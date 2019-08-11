@@ -12,24 +12,29 @@ import java.util.Date;
  *
  * @author franciscosandoval
  */
-public class Notificacion {
+public class Notificacion implements Observador{
     private int id;
     private Date fechaNotificacion;
     private String asunto;
     private String estado;
     private String remitente;
+    private String para;
 
    
     public Notificacion() {
     }
-
     public Notificacion(String asunto,String remitente) {
         this.fechaNotificacion = new Date();
         this.asunto = asunto;
         this.estado = "False";
         this.remitente = remitente;
     }
-
+    public String getPara() {
+        return para;
+    }
+    public void setPara(String para) {
+        this.para = para;
+    }
     public Date getFechaNotificacion() {
         return fechaNotificacion;
     }
@@ -73,10 +78,13 @@ public class Notificacion {
     public void setId(int id) {
         this.id = id;
     }
-    
     @Override
     public String toString() {
         return "Notificacion{" + "fechaNotificacion=" + fechaNotificacion + ", asunto=" + asunto + ", estado=" + estado + ", remitente=" + remitente + '}';
+    }
+    @Override
+    public String alertaNotificacion(int notificacion) {
+       return "Usted tiene "+notificacion+" notificacion(es) pendientes.";
     }
      
 }

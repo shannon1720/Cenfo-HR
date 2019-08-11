@@ -12,12 +12,7 @@ import java.util.ArrayList;
  *
  * @author Usuario
  */
-public abstract class NotificacionesEnviar  {
-        public abstract int crearNotificaciones(Notificacion miNotificacion);
-	public abstract String crearNotificacionesPermiso(PermisoSalida miPermiso);
-        public abstract String crearNotificacionesHoras(PermisoHorasExtra miHorasExtra);
-        public abstract ArrayList<Notificacion> listarNotificaciones(String code);
-        public abstract Notificacion buscarNotificacione(String code);
-        public abstract Notificacion CambiarEstado(String code);
+public  interface NotificacionesEnviar  {
+       String notificarObservador();
 
 }

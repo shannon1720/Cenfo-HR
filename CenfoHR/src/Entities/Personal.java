@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package Entities;
-
 import java.util.Date;
-
 
 /**
  *
@@ -34,6 +32,23 @@ public  static Personal getPersonal(String identificacion, String nombre, String
 		}
 		return mipersonal;
 	 }
+
+    private String identificacion;
+    private String nombre;
+    private String apellidoUno;
+    private String apellidoDos;
+    private Date fechaNacimiento;
+    private Date fechaIngreso;
+    private String genero;
+    private String contrasenna;
+    private int rol;
+    private int grado_academico;
+    private MediaPersonal miMedia;
+    private static Personal mipersonal = null;
+
+    public Personal() {
+    }
+
     public Personal(String identificacion, String nombre, String apellidoUno, String apellidoDos, Date fechaNacimiento, Date fechaIngreso, String genero, String contrasenna, int rol, int grado_academico, MediaPersonal miMedia) {
         this.identificacion = identificacion;
         this.nombre = nombre;
@@ -46,6 +61,21 @@ public  static Personal getPersonal(String identificacion, String nombre, String
         this.rol = rol;
         this.grado_academico = grado_academico;
         this.miMedia = miMedia;
+    }
+
+    public static Personal getPersonal(Personal miPersonalSinglethon) {
+        if (mipersonal == null) {
+            mipersonal = miPersonalSinglethon;
+        }
+        return mipersonal;
+    }
+
+    public static Personal getMipersonal() {
+        return mipersonal;
+    }
+
+    public static void setMipersonal(Entities.Personal mipersonal) {
+        mipersonal = null;
     }
 
     public int getGrado_academico() {
@@ -63,7 +93,7 @@ public  static Personal getPersonal(String identificacion, String nombre, String
     public void setMiMedia(MediaPersonal miMedia) {
         this.miMedia = miMedia;
     }
-    
+
     public int getRol() {
         return rol;
     }
@@ -71,7 +101,7 @@ public  static Personal getPersonal(String identificacion, String nombre, String
     public void setRol(int rol) {
         this.rol = rol;
     }
-   
+
     public String getIdentificacion() {
         return identificacion;
     }

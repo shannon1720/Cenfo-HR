@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/CenfoHR/CenfoHR/src/DataAccess/PersonalMapper.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/CenfoHR/CenfoHR/src/DataAccess/PermisoSalidaMapper.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/CenfoHR/CenfoHR/src/BusinessLayer/PersonalLogica.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/CenfoHR/CenfoHR/src/Resources/InicioSesion.fxml</file>
-            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/CenfoHR/CenfoHR/src/DataAccess/SqlConnection.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/CenfoHR/CenfoHR/src/Entities/Personal.java</file>
-            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/CenfoHR/CenfoHR/src/Controller/PersonaController.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/Cenfo-HR/CenfoHR/src/Controller/PersonaController.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/Cenfo-HR/CenfoHR/src/Entities/MediaPersonal.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/Cenfo-HR/CenfoHR/src/Controller/PermisoSalidaController.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/Cenfo-HR/CenfoHR/src/Main/UIPrincipal.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/Cenfo-HR/CenfoHR/src/Controller/NotificacionesController.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/Cenfo-HR/CenfoHR/src/DataAccess/PersonalMapper.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/Cenfo-HR/CenfoHR/src/BusinessLayer/Fabrica.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/Cenfo-HR/CenfoHR/src/Entities/Personal.java</file>
+            <file>file:/C:/Users/Usuario/Documents/Proyecto-de-patrones/Cenfo-HR/CenfoHR/src/BusinessLayer/PersonalLogica.java</file>
         </group>
     </open-files>
 </project-private>
