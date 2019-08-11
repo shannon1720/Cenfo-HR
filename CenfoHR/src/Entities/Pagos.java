@@ -12,16 +12,18 @@ package Entities;
 public class Pagos {
     
     private int totalHorasPorMes;
-    private String mesAnho;
+    private String mes;
+    private int anho;
     private int montoPagoPorHora;
     private int totalAPagar;
 
     public Pagos() {
     }
 
-    public Pagos(int totalHorasPorMes, String mesAnho) {
+    public Pagos(int totalHorasPorMes, String mes, int anho) {
         this.totalHorasPorMes = totalHorasPorMes;
-        this.mesAnho = mesAnho;
+        this.mes = mes;
+        this.anho = anho;
     }
 
     public int getTotalHorasPorMes() {
@@ -32,12 +34,20 @@ public class Pagos {
         this.totalHorasPorMes = totalHorasPorMes;
     }
 
-    public String getMesAnho() {
-        return mesAnho;
+    public String getMes() {
+        return mes;
     }
 
-    public void setMesAnho(String mesAnho) {
-        this.mesAnho = mesAnho;
+    public void setMes(String mes) {
+        this.mes = mes;
+    }
+
+    public int getAnho() {
+        return anho;
+    }
+
+    public void setAnho(int anho) {
+        this.anho = anho;
     }
 
     public int getMontoPagoPorHora() {
@@ -58,7 +68,7 @@ public class Pagos {
 
     @Override
     public String toString() {
-        return "Pagos{" + "totalHorasPorMes=" + totalHorasPorMes + ", mesAnho=" + mesAnho + ", montoPagoPorHora=" + montoPagoPorHora + ", totalAPagar=" + totalAPagar + '}';
+        return "Pagos{" + "totalHorasPorMes=" + totalHorasPorMes + ", mes=" + mes + ", anho=" + anho + ", montoPagoPorHora=" + montoPagoPorHora + ", totalAPagar=" + totalAPagar + '}';
     }
-    
+
 }
