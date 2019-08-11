@@ -8,10 +8,12 @@ package Controller;
 import BusinessLayer.PersonalLogica;
 import Entities.MediaPersonal;
 import Entities.Personal;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,6 +24,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -88,6 +92,9 @@ public class PersonaController implements Initializable {
 
     @FXML
     private PasswordField tfContraseña;
+    ObservableList<String> pTiposDeRol = FXCollections.observableArrayList("Administrador", "Supervisor", "Empleado");
+    ObservableList<String> pTiposDeGrado = FXCollections.observableArrayList("Bachillerato", "Diplomado", "Técnico");
+    ObservableList<String> pTiposDeGenero = FXCollections.observableArrayList("Femenino", "Masculino", "Otro");
 
     @FXML
     public void buscarDocumento(ActionEvent event) {
@@ -102,6 +109,7 @@ public class PersonaController implements Initializable {
     public void enviarDatos(ActionEvent event) {
 
         int rol = 0, grado = 0;
+        String genero = "";
         if (cbRol.getValue().equals("Administrador")) {
             rol = 1;
         } else {
@@ -129,40 +137,69 @@ public class PersonaController implements Initializable {
         mimedia.setTipo("Docuemento xls");
         mimedia.setUrl(tfUrlDocumento.getText());
         Personal miPersonal = new Personal(tfIdentificacion.getText(), tfNombre.getText(), tfApellidoUno.getText(), tfApellidoSegundo.getText(), Date.from(tfNacimiento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), Date.from(tfEntrada.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), cbGenero.getValue(), tfClave.getText(), rol, grado, mimedia);
-        String mensaje =(String)mipersonal.crearObjeto(miPersonal);
-        
+        if (validarPersonal(miPersonal)) {
+            String mensaje = (String) mipersonal.crearObjeto(miPersonal);
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("");
+            alert.setHeaderText("");
+            alert.setContentText(mensaje);
+        }
     }
 
     @FXML
     public void ingresaSesion(ActionEvent event) throws Exception {
 
-        Personal miPersonal2 = new Personal(), miPersonal;
+        Entities.Personal miPersonal2 = new Personal(), miPersonal;
         miPersonal2.setIdentificacion(tfCorreo.getText());
         miPersonal2.setContrasenna(tfContraseña.getText());
-        miPersonal = (Personal) mipersonal.buscarObjeto(miPersonal2);
+        miPersonal = (Entities.Personal) mipersonal.buscarObjeto(miPersonal2);
         if (miPersonal != null) {
             if (miPersonal.getRol() == 3) {
+                Personal.getPersonal(miPersonal);
                 AnchorPane pane1 = FXMLLoader.load(getClass().getResource("/Resources/UiEmpleado.fxml"));
                 pnlInicioSesion.getChildren().setAll(pane1);
+               
             } else {
                 if (miPersonal.getRol() == 2 || miPersonal.getRol() == 1) {
+                     Personal.getPersonal(miPersonal);
                     AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/Resources/UiSuperior.fxml"));
                     pnlInicioSesion.getChildren().setAll(pane2);
+                  
                 }
             }
         }
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        
-        obtenerDatos();
+        //TODO
     }
 
-    private void obtenerDatos() {
-        ObservableList<String> pTiposDeRol = FXCollections.observableArrayList("Administrador", "Supervisor", "Empleado");
-        cbRol.setItems(pTiposDeRol);
-
-        ObservableList<String> pTiposDeGrado = FXCollections.observableArrayList("Bachillerato", "Diplomado", "Técnico");
+    @FXML
+    void llenarAcademico(MouseEvent event) {
         cbGradoAcademico.setItems(pTiposDeGrado);
+    }
+
+    @FXML
+    void llenarGenero(ActionEvent event) {
+        cbGenero.setItems(pTiposDeGenero);
+    }
+
+    @FXML
+    void llenarRol(ActionEvent event) {
+        cbRol.setItems(pTiposDeRol);
+    }
+
+    private boolean validarPersonal(Personal miPersonal) {
+        boolean existe = false;
+        ArrayList<Object> listaPersonal = mipersonal.listarObjeto();
+
+        for (int i = 0; i < listaPersonal.size(); i++) {
+            Personal miPersonal2 = (Personal) listaPersonal.get(i);
+
+            if (miPersonal2.getIdentificacion().equals(miPersonal.getIdentificacion())) {
+                existe = true;
+            }
+        }
+        return existe;
     }
 }

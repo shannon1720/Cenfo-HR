@@ -26,14 +26,14 @@
                   <Font name="System Bold" size="32.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cbRol" layoutX="300.0" layoutY="352.0" prefHeight="25.0" prefWidth="275.0" />
+            <ComboBox fx:id="cbRol" layoutX="300.0" layoutY="352.0" onAction="#llenarRol" prefHeight="25.0" prefWidth="275.0" />
             <Label layoutX="187.0" layoutY="254.0" text="Primer apellido" />
             <TextField fx:id="tfApellidoUno" layoutX="300.0" layoutY="250.0" prefHeight="25.0" prefWidth="275.0" promptText="Primer apellido" />
-            <ComboBox fx:id="cbGenero" layoutX="300.0" layoutY="316.0" prefHeight="25.0" prefWidth="275.0" />
+            <ComboBox fx:id="cbGenero" layoutX="300.0" layoutY="316.0" onAction="#llenarGenero" prefHeight="25.0" prefWidth="275.0" />
             <Label layoutX="603.0" layoutY="254.0" text="Segundo apellido" />
             <TextField fx:id="tfApellidoSegundo" layoutX="702.0" layoutY="250.0" prefHeight="25.0" prefWidth="275.0" promptText="Segundo apellido" />
             <Label layoutX="605.0" layoutY="352.0" prefHeight="25.0" prefWidth="93.0" text="Grado académico" />
-            <ComboBox fx:id="cbGradoAcademico" layoutX="702.0" layoutY="352.0" prefHeight="25.0" prefWidth="275.0" />
+            <ComboBox fx:id="cbGradoAcademico" layoutX="702.0" layoutY="352.0" onMouseClicked="#llenarAcademico" prefHeight="25.0" prefWidth="275.0" />
             <Label layoutX="187.0" layoutY="392.0" prefHeight="25.0" prefWidth="67.0" text="Documento" />
             <TextField fx:id="tfUrlDocumento" layoutX="300.0" layoutY="392.0" prefHeight="25.0" prefWidth="275.0" promptText="URL documento" />
             <Button fx:id="btnBuscar" layoutX="575.0" layoutY="392.0" mnemonicParsing="false" onAction="#buscarDocumento" text="Buscar" />

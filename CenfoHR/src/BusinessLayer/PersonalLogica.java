@@ -30,7 +30,7 @@ public class PersonalLogica implements Fabrica{
 
     @Override
     public ArrayList<Object> listarObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return miPersona.listarObjeto();
     }
 
     @Override

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Controller;
+
 import BusinessLayer.NotificacionLogica;
 import Entities.Notificacion;
 import java.io.IOException;
@@ -24,11 +25,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+
 /**
  *
  * @author Shannon
  */
-public class NotificacionesController implements Initializable{
+public class NotificacionesController implements Initializable {
+
     NotificacionLogica miNotificacion = new NotificacionLogica();
     @FXML
     private Button btnBandeja;
@@ -38,7 +41,7 @@ public class NotificacionesController implements Initializable{
     private AnchorPane pnlNotificaciones;
     @FXML
     private Button btnPermisoSalida;
-  @FXML
+    @FXML
     private TableView<Notificacion> tblNotificacion;
 
     @FXML
@@ -58,37 +61,36 @@ public class NotificacionesController implements Initializable{
 
     @FXML
     private Button bntVer;
+
     @FXML
-    private void panelBandeja(){
-    List<Notificacion> lstNotificaciones=miNotificacion.listarNotificaciones("");
-    ObservableList<Notificacion> olstNotificaciones = FXCollections.observableList(lstNotificaciones);
-   
-    tblNotificacion.setItems(olstNotificaciones);
+    private void panelBandeja() {
+        List<Notificacion> lstNotificaciones = miNotificacion.listarNotificaciones();
+        ObservableList<Notificacion> olstNotificaciones = FXCollections.observableList(lstNotificaciones);
+        tblNotificacion.setItems(olstNotificaciones);
     }
+
     @FXML
     private void horasExtra(ActionEvent event) throws IOException {
-    AnchorPane pane1 = FXMLLoader.load(getClass().getResource("/Resources/HorasExtra.fxml"));
-    pnlNotificaciones.getChildren().setAll(pane1);
+        AnchorPane pane1 = FXMLLoader.load(getClass().getResource("/Resources/HorasExtra.fxml"));
+        pnlNotificaciones.getChildren().setAll(pane1);
     }
 
     @FXML
     private void permisoSalida(ActionEvent event) throws IOException {
-    AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/Resources/PermisoSalida.fxml"));
-    pnlNotificaciones.getChildren().setAll(pane2);
+        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/Resources/PermisoSalida.fxml"));
+        pnlNotificaciones.getChildren().setAll(pane2);
     }
-   
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-     //   panelBandeja();
+        //   panelBandeja();
     }
-    
 
     @FXML
     void eliminarNotificacion(ActionEvent event) {
-panelBandeja();
+        panelBandeja();
     }
 
-   
     @FXML
     void verNotificacion(ActionEvent event) {
 

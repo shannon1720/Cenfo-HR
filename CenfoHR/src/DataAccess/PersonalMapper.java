@@ -116,7 +116,55 @@ public class PersonalMapper extends SqlConnection implements Fabrica {
 
     @Override
     public ArrayList<Object> listarObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Personal miPersonal = null;
+       String consulta = "{Call dbo.listar_personal()}";
+       ArrayList<Object> listaPersonal =new ArrayList<>();
+  
+        try {
+            conn = DriverManager.getConnection(connectionUrl);
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(consulta);
+            
+           
+            while (rs.next()) {
+                miPersonal = new Personal();
+                miPersonal.setIdentificacion(rs.getString("ID"));
+                miPersonal.setNombre(rs.getString("NAME"));
+                miPersonal.setApellidoUno(rs.getString("LAST_NAME_1"));
+                miPersonal.setApellidoDos(rs.getString("LAST_NAME_2"));
+                miPersonal.setRol(rs.getInt("ID_ROL"));
+                miPersonal.setGenero(rs.getString("SEX"));
+                miPersonal.setGrado_academico(rs.getInt("ID_ACADEMIC_DEGREE"));
+                miPersonal.setFechaIngreso(rs.getDate("ADMISSION_DATE"));
+                miPersonal.setFechaNacimiento(rs.getDate("BIRTHDAY"));
+                MediaPersonal mimedia=new MediaPersonal(rs.getInt("ID_MEDIA"));
+                miPersonal.setMiMedia(mimedia);
+                listaPersonal.add(miPersonal);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (Exception e) {
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (Exception e) {
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception e) {
+                }
+            }
+        }
+        return listaPersonal;
     }
 
     @Override

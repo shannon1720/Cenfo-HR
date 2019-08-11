@@ -98,13 +98,14 @@ public class NotifficacionesMapper extends SqlConnection {
         return resultado;
     }
 
-    public ArrayList<Notificacion> listarNotificaciones(String code) {
+    public ArrayList<Notificacion> listarNotificaciones() {
     ArrayList<Notificacion> listarNotificaciones = null;
     Notificacion miNotificacion = null;
+     String consulta = "{Call dbo.listarNotificaciones}";
         try {
             conn = DriverManager.getConnection(connectionUrl);
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM TBL_NOTIFICATION");
+            rs = stmt.executeQuery(consulta);
             listarNotificaciones =new ArrayList<>();
            
             while (rs.next()) {
@@ -114,6 +115,7 @@ public class NotifficacionesMapper extends SqlConnection {
                 miNotificacion.setFechaNotificacion(rs.getDate("DATE_NOTIFICATION"));
                 miNotificacion.setRemitente(rs.getString("FROM_PERSONAL"));
                 miNotificacion.setEstado(rs.getBoolean("STATE"));
+                miNotificacion.setPara(rs.getString("ID_PERSONAL"));
                 listarNotificaciones.add(miNotificacion);
             }
         } catch (Exception ex) {
