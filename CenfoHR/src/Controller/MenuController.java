@@ -28,7 +28,7 @@ import javafx.stage.Stage;
  * @author Usuario
  */
 public class MenuController implements Initializable {
-   
+
     @FXML
     private AnchorPane panelPaCambiar;
     @FXML
@@ -38,7 +38,7 @@ public class MenuController implements Initializable {
     @FXML
     private Button btnPerfil;
     @FXML
-    private Button btnCerrarSesion; 
+    private Button btnCerrarSesion;
     @FXML
     private AnchorPane panelMenuSuperior;
     @FXML
@@ -47,16 +47,10 @@ public class MenuController implements Initializable {
     private Button btnPersonal;
     @FXML
     private AnchorPane panelMenuEmpleado1;
-    
+
     @FXML
     void panelPerfil(ActionEvent event) {
 
-    }
-
-    @FXML
-    void panelPersonal(ActionEvent event) throws IOException {
-        AnchorPane pane3 = FXMLLoader.load(getClass().getResource("/Resources/PersonalCrear.fxml"));
-        panelPaCambiar.getChildren().setAll(pane3);
     }
 
     @FXML
@@ -64,7 +58,6 @@ public class MenuController implements Initializable {
 
     }
 
-    
     @FXML
     void panelBandeja(ActionEvent event) throws IOException {
         AnchorPane pane1 = FXMLLoader.load(getClass().getResource("/GUI/notificaciones.fxml"));
@@ -78,12 +71,17 @@ public class MenuController implements Initializable {
     }
 
     @FXML
+    void panelPersonal(ActionEvent event) throws IOException {
+        AnchorPane pane3 = FXMLLoader.load(getClass().getResource("/Resources/PersonalCrear.fxml"));
+        panelPaCambiar.getChildren().setAll(pane3);
+    }
+
+    @FXML
     void panelInicioSesion(ActionEvent event) throws IOException {
         AnchorPane pane3 = FXMLLoader.load(getClass().getResource("/Resources/InicioSesion.fxml"));
         panelMenuEmpleado1.getChildren().setAll(pane3);
     }
-    
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TODO

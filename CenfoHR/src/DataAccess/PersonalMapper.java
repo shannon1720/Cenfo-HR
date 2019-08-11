@@ -17,8 +17,9 @@ public class PersonalMapper extends SqlConnection{
 
     
     public Object crearPersonal(Object miObjeto){
-     Personal miPersonal = null;
-    String consulta = "{Call dbo.buscarPersonal()}";
+     Personal miPersonal = (Personal)miObjeto;
+    String consulta = "{Call dbo.crear_personal('"+miPersonal.getIdentificacion()+"','"+miPersonal.getNombre()+"','"+miPersonal.getApellidoUno()+"','"+miPersonal.getApellidoDos()+"','"+miPersonal.getFechaNacimiento()
+    +"','"+miPersonal.getFechaIngreso()+"','"+miPersonal.getGenero()+"','"+miPersonal.getContrasenna()+"','"+miPersonal.getGrado_academico()+"','"+miPersonal.getRol()+"','"+miPersonal.getMiMedia().getUrl()+"','"+miPersonal.getMiMedia().getTipo()+"')}";
     String resultado ="";
     try {
             conn = DriverManager.getConnection(connectionUrl);

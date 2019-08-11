@@ -20,7 +20,7 @@ public class PersonalLogica implements leaf{
     }
     @Override
     public Object crearObjeto(Object miObjeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return miPersona.crearPersonal(miObjeto);
     }
 
     @Override

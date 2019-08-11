@@ -6,11 +6,16 @@
 package Controller;
 
 import BusinessLayer.PersonalLogica;
+import Entities.MediaPersonal;
 import Entities.Personal;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -86,16 +91,46 @@ public class PersonaController implements Initializable {
 
     @FXML
     public void buscarDocumento(ActionEvent event) {
-            FileChooser fc= new FileChooser();
-            File selectFile= fc.showOpenDialog(null);
-            if(selectFile!=null){
+        FileChooser fc = new FileChooser();
+        File selectFile = fc.showOpenDialog(null);
+        if (selectFile != null) {
             tfUrlDocumento.setText(selectFile.getPath());
-            }
+        }
     }
 
     @FXML
-    void enviarDatos(ActionEvent event) {
+    public void enviarDatos(ActionEvent event) {
 
+        int rol = 0, grado = 0;
+        if (cbRol.getValue().equals("Administrador")) {
+            rol = 1;
+        } else {
+            if (cbRol.getValue().equals("Supervisor")) {
+                rol = 2;
+            } else {
+                if (cbRol.getValue().equals("Supervisor")) {
+                    rol = 3;
+                }
+            }
+        }
+        if (cbGradoAcademico.getValue().equals("Bachillerato")) {
+            grado = 1;
+        } else {
+            if (cbGradoAcademico.getValue().equals("Diplomado")) {
+                grado = 2;
+            } else {
+                if (cbGradoAcademico.getValue().equals("Técnico")) {
+                    grado = 3;
+                }
+            }
+        }
+
+        MediaPersonal mimedia = new MediaPersonal();
+        mimedia.setTipo("Docuemento xls");
+        mimedia.setUrl(tfUrlDocumento.getText());
+        Personal miPersonal = new Personal(tfIdentificacion.getText(), tfNombre.getText(), tfApellidoUno.getText(), tfApellidoSegundo.getText(), Date.from(tfNacimiento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), Date.from(tfEntrada.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), cbGenero.getValue(), tfClave.getText(), rol, grado, mimedia);
+        String mensaje =(String)mipersonal.crearObjeto(miPersonal);
+        
     }
 
     @FXML
@@ -119,6 +154,15 @@ public class PersonaController implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO
+        
+        obtenerDatos();
+    }
+
+    private void obtenerDatos() {
+        ObservableList<String> pTiposDeRol = FXCollections.observableArrayList("Administrador", "Supervisor", "Empleado");
+        cbRol.setItems(pTiposDeRol);
+
+        ObservableList<String> pTiposDeGrado = FXCollections.observableArrayList("Bachillerato", "Diplomado", "Técnico");
+        cbGradoAcademico.setItems(pTiposDeGrado);
     }
 }
