@@ -24,6 +24,9 @@ public class MediaPersonal {
     this.id=aInt;
     }
 
+    public MediaPersonal() {
+    }
+
     
 
     public int getId() {
