@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class Personal {
 
-    private String identificacion;
+   private String identificacion;
    private String nombre;
    private String apellidoUno;
    private String apellidoDos;
