@@ -54,10 +54,10 @@ public class PermisoSalidaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObtenerProyectos();
+        obtenerProyectos();
     }
 
-    private void ObtenerProyectos() {
+    private void obtenerProyectos() {
         ObservableList<String> pTiposDepermiso = FXCollections.observableArrayList("Cita médica", "Vacaciones", "Ausencia medio dia", "Ausencia dia completo");
         cbTipoPermiso.setItems(pTiposDepermiso);
     }

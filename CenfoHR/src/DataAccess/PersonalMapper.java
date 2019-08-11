@@ -5,20 +5,23 @@
  */
 package DataAccess;
 
+import BusinessLayer.Fabrica;
 import Entities.MediaPersonal;
 import Entities.Personal;
 import java.sql.DriverManager;
+import java.util.ArrayList;
 
 /**
  *
  * @author Usuario
  */
-public class PersonalMapper extends SqlConnection{
+public class PersonalMapper extends SqlConnection implements Fabrica {
 
-    
-    public Object crearPersonal(Object miObjeto){
-     Personal miPersonal = null;
-    String consulta = "{Call dbo.buscarPersonal()}";
+    @Override
+    public Object crearObjeto(Object miObjeto){
+     Personal miPersonal = (Personal)miObjeto;
+    String consulta = "{Call dbo.crear_personal('"+miPersonal.getIdentificacion()+"','"+miPersonal.getNombre()+"','"+miPersonal.getApellidoUno()+"','"+miPersonal.getApellidoDos()+"','"+miPersonal.getFechaNacimiento()
+    +"','"+miPersonal.getFechaIngreso()+"','"+miPersonal.getGenero()+"','"+miPersonal.getContrasenna()+"','"+miPersonal.getGrado_academico()+"','"+miPersonal.getRol()+"','"+miPersonal.getMiMedia().getUrl()+"','"+miPersonal.getMiMedia().getTipo()+"')}";
     String resultado ="";
     try {
             conn = DriverManager.getConnection(connectionUrl);
@@ -56,7 +59,8 @@ public class PersonalMapper extends SqlConnection{
     
     
   
-    public Object buscarPersona(Object miObjeto) {
+   @Override
+    public Object buscarObjeto(Object miObjeto) {
        Personal miPersonal = null,miPersonal2=(Personal)miObjeto;
        String consulta = "{Call dbo.buscarPersonal('"+miPersonal2.getIdentificacion()+"','"+miPersonal2.getContrasenna()+"')}";
        Object buscarPersonal = null;
@@ -107,5 +111,19 @@ public class PersonalMapper extends SqlConnection{
         }
         return buscarPersonal;
     }
+
+   
+
+    @Override
+    public ArrayList<Object> listarObjeto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String eliminarObjeto(Object miOnjeto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     
 }

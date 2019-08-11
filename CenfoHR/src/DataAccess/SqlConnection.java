@@ -10,10 +10,7 @@ import java.sql.*;
  * @author Alriosa
  */
 public class SqlConnection {
-    String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=DB_CENFO_HR;integratedsecurity = true";
-    
-    //String de connecion de Daniela >> String connectionUrl = "jdbc:sqlserver://SHANNON1720;DatabaseName=DB_CENFO_HR;integratedsecurity = true";
-    //String de connecion de Francisco >> "jdbc:sqlserver://localhost:1433;databaseName=DB_CENFO_HR;user=sa;password=reallyStrongPwd123";
+    String connectionUrl = "jdbc:sqlserver://SHANNON1720;DatabaseName=DB_CENFO_HR;integratedsecurity = true";
     
     protected Connection conn = null;
     protected Statement stmt = null;
