@@ -14,24 +14,48 @@ import java.util.Date;
  */
 public class PermisoHorasExtra  {
     private int horasExtra;
-    private boolean estado;
+    private String estado;
+    private int idnotificacion;
     private int id;
+    private Date fecha_horaExtra;
     private final String tipoNotificacion="Horas extra";
-    public PermisoHorasExtra(int horasExtra, boolean estado, int id) {
-        this.horasExtra = horasExtra;
-        this.estado = estado;
-        this.id = id;
-    
-    }
-
-    public PermisoHorasExtra(Date fechaNotificacion, String asunto, String remitente, int horasExtra) {
-        this.horasExtra = horasExtra;
-        this.estado = false;
-
-    }
-
+    private String nombreProyecto;
     public PermisoHorasExtra() {
     }
+
+    public PermisoHorasExtra(int horasExtra,int idnotificacion,Date fecha_horaExtra,String nombreProyecto) {
+        this.idnotificacion=idnotificacion;
+        this.horasExtra = horasExtra;
+        this.estado ="False";
+        this.fecha_horaExtra=fecha_horaExtra;
+        this.nombreProyecto=nombreProyecto;
+    }
+
+    public int getIdnotificacion() {
+        return idnotificacion;
+    }
+
+    public void setIdnotificacion(int idnotificacion) {
+        this.idnotificacion = idnotificacion;
+    }
+
+    public Date getFecha_horaExtra() {
+        return fecha_horaExtra;
+    }
+
+    public void setFecha_horaExtra(Date fecha_horaExtra) {
+        this.fecha_horaExtra = fecha_horaExtra;
+    }
+
+    public String getNombreProyecto() {
+        return nombreProyecto;
+    }
+
+    public void setNombreProyecto(String nombreProyecto) {
+        this.nombreProyecto = nombreProyecto;
+    }
+
+    
     public String getTipoNotificacion() {
         return tipoNotificacion;
     }
@@ -43,12 +67,15 @@ public class PermisoHorasExtra  {
         this.horasExtra = horasExtra;
     }
 
-    public boolean isEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setEstado(Boolean estado) {
+        if(estado){
+         this.estado = "Aceptado";
+        }else{ this.estado = "Rechazado";}
+        
     }
 
     public int getId() {
@@ -58,6 +85,8 @@ public class PermisoHorasExtra  {
     public void setId(int id) {
         this.id = id;
     }
+
+    
 
     
     

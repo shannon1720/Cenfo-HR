@@ -92,6 +92,11 @@ public class MenuController implements Initializable {
         alert.setHeaderText("");
         alert.setContentText(miNotificacion.notificarObservador());
         alert.show();
+         Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+        alert2.setTitle("");
+        alert2.setHeaderText("");
+        alert2.setContentText(miNotificacion.notificardesicionTomada());
+        alert2.show();
     }
 
 }

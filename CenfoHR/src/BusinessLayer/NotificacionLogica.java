@@ -6,6 +6,7 @@
 package BusinessLayer;
 
 import DataAccess.NotifficacionesMapper;
+import DataAccess.PermisoHorasExtraMapper;
 import DataAccess.PermisoSalidaMapper;
 import Entities.Notificacion;
 import Entities.PermisoHorasExtra;
@@ -22,6 +23,7 @@ public class NotificacionLogica implements NotificacionesEnviar {
     private static ArrayList<Notificacion> lstNotificacion = new ArrayList<Notificacion>();
     private NotifficacionesMapper miNoti = new NotifficacionesMapper();
     private PermisoSalidaMapper miPermisoM = new PermisoSalidaMapper();
+    private PermisoHorasExtraMapper horasExtra = new PermisoHorasExtraMapper();
 
     public NotificacionLogica() {
     }
@@ -31,11 +33,12 @@ public class NotificacionLogica implements NotificacionesEnviar {
     }
 
     public Notificacion buscarNotificacione(String code) {
-        return null;
+        return miNoti.buscarNotificacione(code);
     }
 
-    public Notificacion CambiarEstado(String code) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String CambiarEstado(int code) {
+        return miNoti.CambiarEstado(code);
+
     }
 
     public int crearNotificaciones(Notificacion miNotificacion) {
@@ -48,7 +51,7 @@ public class NotificacionLogica implements NotificacionesEnviar {
     }
 
     public String crearNotificacionesHoras(PermisoHorasExtra miHorasExtra) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return horasExtra.crearNotificaciones(miHorasExtra);
     }
 
     @Override
@@ -56,14 +59,29 @@ public class NotificacionLogica implements NotificacionesEnviar {
         Notificacion minotiAlerta = new Notificacion();
         int alertas = 0;
         for (Notificacion minotiFicaciones : listarNotificaciones()) {
-            if (Personal.getMipersonal().getIdentificacion().equals(minotiFicaciones.getPara()) && 
-                minotiFicaciones.getEstado().equals("No visto")) {
+            if (Personal.getMipersonal().getIdentificacion().equals(minotiFicaciones.getPara())
+                    && minotiFicaciones.getEstado().equals("No visto")) {
                 alertas++;
             }
-
         }
-
         return minotiAlerta.alertaNotificacion(alertas);
+    }
+
+    @Override
+    public String notificardesicionTomada() {
+        Notificacion minotiAlerta = new Notificacion();
+        int alertas = 0;
+        for (Notificacion minotiFicaciones : listarNotificaciones()) {
+            if (Personal.getMipersonal().getIdentificacion().equals(minotiFicaciones.getPara())
+                    && minotiFicaciones.getEstado().equals("Visto")) {
+                alertas++;
+            }
+        }
+        return minotiAlerta.alertaNotificacionDesicion(alertas);
+    }
+
+    public String eliminarNotificacion(int id) {
+        return miNoti.eliminarNotificacion(id);
     }
 
 }
