@@ -6,6 +6,7 @@
 package BusinessLayer;
 
 import DataAccess.NotifficacionesMapper;
+import DataAccess.PermisoHorasExtraMapper;
 import DataAccess.PermisoSalidaMapper;
 import Entities.Notificacion;
 import Entities.PermisoHorasExtra;
@@ -22,7 +23,7 @@ public class NotificacionLogica implements NotificacionesEnviar {
     private static ArrayList<Notificacion> lstNotificacion = new ArrayList<Notificacion>();
     private NotifficacionesMapper miNoti = new NotifficacionesMapper();
     private PermisoSalidaMapper miPermisoM = new PermisoSalidaMapper();
-
+    private PermisoHorasExtraMapper horasExtra=new PermisoHorasExtraMapper();
     public NotificacionLogica() {
     }
 
@@ -31,7 +32,7 @@ public class NotificacionLogica implements NotificacionesEnviar {
     }
 
     public Notificacion buscarNotificacione(String code) {
-        return null;
+        return miNoti.buscarNotificacione(code);
     }
 
     public Notificacion CambiarEstado(String code) {
@@ -48,7 +49,7 @@ public class NotificacionLogica implements NotificacionesEnviar {
     }
 
     public String crearNotificacionesHoras(PermisoHorasExtra miHorasExtra) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return horasExtra.crearNotificaciones(miHorasExtra);
     }
 
     @Override

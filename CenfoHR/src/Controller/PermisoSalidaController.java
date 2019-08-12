@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -33,7 +34,7 @@ public class PermisoSalidaController implements Initializable {
     NotificacionLogica miNotificacion = new NotificacionLogica();
     @FXML
     private AnchorPane pnlPermisoSalida;
-   @FXML
+    @FXML
     private ComboBox<String> cbTipoPermiso;
     @FXML
     private TextField tfAsunto;
@@ -48,8 +49,15 @@ public class PermisoSalidaController implements Initializable {
 
     @FXML
     void enviarDatos(ActionEvent event) {
-      int idNotificacion=miNotificacion.crearNotificaciones(new Notificacion(tfAsunto.getText(),"Daniel1"));
-        miNotificacion.crearNotificacionesPermiso(new PermisoSalida(Date.from(tfSalida.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),Date.from(tfEntrada.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()),tfDescripcion.getText(),cbTipoPermiso.getValue(),idNotificacion));
+        int idNotificacion = miNotificacion.crearNotificaciones(new Notificacion(tfAsunto.getText(), Personal.getMipersonal().getIdentificacion()));
+        String mensaje = miNotificacion.crearNotificacionesPermiso(new PermisoSalida(Date.from(tfSalida.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), Date.from(tfEntrada.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()), tfDescripcion.getText(), cbTipoPermiso.getValue(), idNotificacion));
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("");
+        alert.setHeaderText("");
+        alert.setContentText(mensaje);
+        limpiarcampos();
+        alert.show();
+        
     }
 
     @Override
@@ -62,4 +70,9 @@ public class PermisoSalidaController implements Initializable {
         cbTipoPermiso.setItems(pTiposDepermiso);
     }
 
+    private void limpiarcampos() {
+        tfAsunto.setText("");
+        tfDescripcion.setText("");
+
+    }
 }

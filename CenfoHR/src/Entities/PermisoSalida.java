@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class PermisoSalida {
 
-    private boolean estado;
+    private String estado;
     private Date fechaentrada;
     private Date fechasalida;
     private String descripcion;
@@ -26,7 +26,7 @@ public class PermisoSalida {
     }
 
     public PermisoSalida(Date fechaentrada, Date fechasalida, String descripcion, String tipoNotificacion, int idNotificacion) {
-        this.estado = false;
+        this.estado = "False";
         this.fechaentrada = fechaentrada;
         this.fechasalida = fechasalida;
         this.descripcion = descripcion;
@@ -62,12 +62,16 @@ public class PermisoSalida {
         return tipoNotificacion;
     }
 
-    public boolean isEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setEstado(Boolean estado) {
+        
+      if(estado){
+         this.estado = "Aceptado";
+        }else{ this.estado = "Rechazado";}
+        
     }
 
     public String getDescripcion() {
