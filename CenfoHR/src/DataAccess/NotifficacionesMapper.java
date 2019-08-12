@@ -149,7 +149,46 @@ public class NotifficacionesMapper extends SqlConnection {
         return null;
     }
 
-    public Notificacion CambiarEstado(String code) {
-        return null;
+    public String CambiarEstado(int code) {
+        String consulta = "{Call dbo.cambiarEstadoNotificacion ('" + code + "')}";
+        String resultado;
+
+        try {
+            conn = DriverManager.getConnection(connectionUrl);
+            stmt = conn.createStatement();
+            stmt.execute(consulta);
+
+            resultado = "La notificacion se registró correctamente en el sistema.";
+
+        } catch (Exception error) {
+            resultado = "No se pudo registrar la notificacion, intentelo de nuevo " + error.getMessage();
+
+        } finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (Exception e) {
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (Exception e) {
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception e) {
+                }
+            }
+        }
+
+        return resultado;
+    }
+
+    public String eliminarNotificacion(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -10,6 +10,7 @@ import Entities.Notificacion;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -24,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -45,16 +47,16 @@ public class NotificacionesController implements Initializable {
     private TableView<Notificacion> tblNotificacion;
 
     @FXML
-    private TableColumn<?, ?> colRemitente;
+    private TableColumn<Notificacion, String> colRemitente;
 
     @FXML
-    private TableColumn<?, ?> colAsunto;
+    private TableColumn<Notificacion, String> colAsunto;
 
     @FXML
-    private TableColumn<?, ?> colEstado;
+    private TableColumn<Notificacion, String> colEstado;
 
     @FXML
-    private TableColumn<?, ?> colFecha;
+    private TableColumn<Notificacion, Date> colFecha;
 
     @FXML
     private Button btnEliminar;
@@ -62,10 +64,14 @@ public class NotificacionesController implements Initializable {
     @FXML
     private Button bntVer;
 
-    @FXML
     private void panelBandeja() {
         List<Notificacion> lstNotificaciones = miNotificacion.listarNotificaciones();
         ObservableList<Notificacion> olstNotificaciones = FXCollections.observableList(lstNotificaciones);
+
+        colRemitente.setCellValueFactory(new PropertyValueFactory<Notificacion, String>("remitente"));
+        colAsunto.setCellValueFactory(new PropertyValueFactory<Notificacion, String>("asunto"));
+        colEstado.setCellValueFactory(new PropertyValueFactory<Notificacion, String>("estado"));
+        colFecha.setCellValueFactory(new PropertyValueFactory<Notificacion, Date>("fechaNotificacion"));
         tblNotificacion.setItems(olstNotificaciones);
     }
 
@@ -83,16 +89,21 @@ public class NotificacionesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //   panelBandeja();
-    }
-
-    @FXML
-    void eliminarNotificacion(ActionEvent event) {
         panelBandeja();
     }
 
     @FXML
-    void verNotificacion(ActionEvent event) {
+    void eliminarNotificacion(ActionEvent event) {
+        Notificacion notificacionSeleccionada = tblNotificacion.getSelectionModel().getSelectedItem();
+        miNotificacion.eliminarNotificacion(notificacionSeleccionada.getId());
+        panelBandeja();
+        
+    }
 
+    @FXML
+    void verNotificacion(ActionEvent event) {
+        Notificacion notificacionSeleccionada = tblNotificacion.getSelectionModel().getSelectedItem();
+        miNotificacion.CambiarEstado(notificacionSeleccionada.getId());
+        panelBandeja();
     }
 }

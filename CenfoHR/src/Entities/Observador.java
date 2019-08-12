@@ -11,4 +11,5 @@ package Entities;
  */
 public interface Observador {
     String alertaNotificacion(int notificacion);
+    String alertaNotificacionDesicion(int notificacion);
 }
