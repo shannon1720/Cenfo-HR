@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PagosTableViewController">
+   <children>
+    <AnchorPane prefHeight="574.0" prefWidth="1095.0" style="-fx-background-color: #FFFFFF;" styleClass="personalStyle.css">
+         <children>
+            <TableView fx:id="tblPagos" layoutX="72.0" layoutY="180.0" prefHeight="324.0" prefWidth="714.0">
+              <columns>
+                <TableColumn fx:id="colMes" minWidth="0.0" prefWidth="188.5" text="Mes" />
+                <TableColumn fx:id="colAnho" prefWidth="167.0" text="Anho" />
+                  <TableColumn fx:id="colHorasTrabajadas" prefWidth="196.5" text="Horas Trabajadas" />
+                  <TableColumn fx:id="colSalario" minWidth="0.0" prefWidth="158.6666259765625" text="Salario" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnActualizar" layoutX="814.0" layoutY="180.0" mnemonicParsing="false" onAction="#actualizarTablaPagos" text="Actualizar Tabla" />
+            <Label layoutX="296.0" layoutY="90.0" prefHeight="17.0" prefWidth="320.0" text="            PAGOS" textFill="#009688">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

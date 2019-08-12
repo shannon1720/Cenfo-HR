@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="MenuPanel" fx:id="panelMenuEmpleado1" maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1366.0" stylesheets="@personalStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
+<AnchorPane id="MenuPanel" fx:id="panelMenuEmpleado1" maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1366.0" stylesheets="@personalStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
 <children>
       <AnchorPane id="personalInternalPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="1366.0">
          <children>
@@ -35,7 +34,12 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnCerrarSesion" layoutY="208.0" mnemonicParsing="false" onAction="#panelInicioSesion" prefHeight="67.0" prefWidth="272.0" style="-fx-background-color: #009688;" text="Cerrar sesión" textFill="WHITE">
+            <Button fx:id="btnCerrarSesion" layoutY="272.0" mnemonicParsing="false" onAction="#panelInicioSesion" prefHeight="67.0" prefWidth="272.0" style="-fx-background-color: #009688;" text="Cerrar sesión" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnVerPagos" layoutY="200.0" mnemonicParsing="false" onAction="#panelPagos" prefHeight="67.0" prefWidth="272.0" style="-fx-background-color: #009688;" text="Ver pagos de salario" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
