@@ -87,5 +87,10 @@ public class Notificacion implements Observador{
         
        return "Usted tiene "+notificacion+" notificacion(es) pendientes.";
     }
+
+    @Override
+    public String alertaNotificacionDesicion(int notificacion) {
+    return "Usted tiene "+notificacion+" notificacion(es) respondidas.";
+    }
      
 }

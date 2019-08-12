@@ -61,10 +61,21 @@ public class NotificacionLogica implements NotificacionesEnviar {
                 minotiFicaciones.getEstado().equals("No visto")) {
                 alertas++;
             }
-
         }
-
         return minotiAlerta.alertaNotificacion(alertas);
+    }
+
+    @Override
+    public String notificardesicionTomada() {
+       Notificacion minotiAlerta = new Notificacion();
+        int alertas = 0;
+        for (Notificacion minotiFicaciones : listarNotificaciones()) {
+            if (Personal.getMipersonal().getIdentificacion().equals(minotiFicaciones.getPara()) && 
+                minotiFicaciones.getEstado().equals("Visto")) {
+                alertas++;
+            }
+        }
+        return minotiAlerta.alertaNotificacionDesicion(alertas);
     }
 
 }

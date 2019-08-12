@@ -14,5 +14,6 @@ import java.util.ArrayList;
  */
 public  interface NotificacionesEnviar  {
        String notificarObservador();
+       String notificardesicionTomada();
 
 }
