@@ -67,6 +67,12 @@ public class MenuController implements Initializable {
     }
 
     @FXML
+    void panelPagos(ActionEvent event) throws IOException {
+        AnchorPane pane1 = FXMLLoader.load(getClass().getResource("/GUI/pagos.fxml"));
+        panelPaCambiar.getChildren().setAll(pane1);
+    }
+
+    @FXML
     public void panelMensajes(ActionEvent event) throws IOException {
         AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/Resources/NotificacionesOpcion.fxml"));
         panelPaCambiar.getChildren().setAll(pane2);

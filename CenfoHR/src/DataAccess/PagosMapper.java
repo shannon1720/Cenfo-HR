@@ -32,7 +32,7 @@ public class PagosMapper extends SqlConnection {
                 totalHoras = rs.getInt("TOTAL_HOURS");
                 mes = rs.getString("MonthName");
                 anho = rs.getInt("ANHO");
-                tmpPago = new Pagos(totalHoras,mes,anho);
+                tmpPago = new Pagos(mes,anho,totalHoras);
                 //Output de prueba, para validar los datos estan siendo obtenidos correctamente
                 System.out.println("Fecha >> "+ "MES:" + tmpPago.getMes() + " ANHO:" + tmpPago.getAnho());
                 System.out.println("Horas laboradas: " + tmpPago.getTotalHorasPorMes());

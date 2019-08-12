@@ -10,27 +10,27 @@ package Entities;
  * @author franciscosandoval
  */
 public class Pagos {
-    
-    private int totalHorasPorMes;
+
     private String mes;
-    private int anho;
-    private int montoPagoPorHora;
-    private int totalAPagar;
+    private Integer anho;
+    private Integer totalHorasPorMes;
+    private Integer montoPagoPorHora = 3000;
+    private Integer totalAPagar;
 
     public Pagos() {
     }
 
-    public Pagos(int totalHorasPorMes, String mes, int anho) {
-        this.totalHorasPorMes = totalHorasPorMes;
+    public Pagos(String mes, Integer anho, Integer totalHorasPorMes) {
         this.mes = mes;
         this.anho = anho;
+        this.totalHorasPorMes = totalHorasPorMes;
     }
 
-    public int getTotalHorasPorMes() {
+    public Integer getTotalHorasPorMes() {
         return totalHorasPorMes;
     }
 
-    public void setTotalHorasPorMes(int totalHorasPorMes) {
+    public void setTotalHorasPorMes(Integer totalHorasPorMes) {
         this.totalHorasPorMes = totalHorasPorMes;
     }
 
@@ -42,27 +42,27 @@ public class Pagos {
         this.mes = mes;
     }
 
-    public int getAnho() {
+    public Integer getAnho() {
         return anho;
     }
 
-    public void setAnho(int anho) {
+    public void setAnho(Integer anho) {
         this.anho = anho;
     }
 
-    public int getMontoPagoPorHora() {
+    public Integer getMontoPagoPorHora() {
         return montoPagoPorHora;
     }
 
-    public void setMontoPagoPorHora(int montoPagoPorHora) {
+    public void setMontoPagoPorHora(Integer montoPagoPorHora) {
         this.montoPagoPorHora = montoPagoPorHora;
     }
 
-    public int getTotalAPagar() {
-        return totalAPagar;
+    public Integer getTotalAPagar() {
+        return this.montoPagoPorHora*this.totalHorasPorMes;
     }
 
-    public void setTotalAPagar(int totalAPagar) {
+    public void setTotalAPagar(Integer totalAPagar) {
         this.totalAPagar = totalAPagar;
     }
 
