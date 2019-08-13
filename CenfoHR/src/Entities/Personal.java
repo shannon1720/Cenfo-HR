@@ -5,7 +5,6 @@
  */
 package Entities;
 import java.util.Date;
-
 /**
  *
  * @author Alriosa

@@ -9,6 +9,7 @@ import DataAccess.NotifficacionesMapper;
 import DataAccess.PermisoHorasExtraMapper;
 import DataAccess.PermisoSalidaMapper;
 import Entities.Notificacion;
+import Entities.Observable;
 import Entities.PermisoHorasExtra;
 import Entities.PermisoSalida;
 import Entities.Personal;
@@ -28,8 +29,14 @@ public class NotificacionLogica implements NotificacionesEnviar {
     public NotificacionLogica() {
     }
 
-    public ArrayList<Notificacion> listarNotificaciones() {
-        return miNoti.listarNotificaciones();
+    public ArrayList<Notificacion> listarNotificaciones() 
+    {
+            ArrayList<Notificacion> lstNotificaciones=new ArrayList<>();
+        for (Notificacion minotiFicaciones : miNoti.listarNotificaciones()) {
+            if (Personal.getMipersonal().getIdentificacion().equals(minotiFicaciones.getPara())) {
+             lstNotificaciones.add(minotiFicaciones);
+            }}
+        return lstNotificaciones;
     }
 
     public Notificacion buscarNotificacione(String code) {
@@ -56,7 +63,7 @@ public class NotificacionLogica implements NotificacionesEnviar {
 
     @Override
     public String notificarObservador() {
-        Notificacion minotiAlerta = new Notificacion();
+        Observable minotiAlerta = new Observable();
         int alertas = 0;
         for (Notificacion minotiFicaciones : listarNotificaciones()) {
             if (Personal.getMipersonal().getIdentificacion().equals(minotiFicaciones.getPara())
@@ -69,7 +76,7 @@ public class NotificacionLogica implements NotificacionesEnviar {
 
     @Override
     public String notificardesicionTomada() {
-        Notificacion minotiAlerta = new Notificacion();
+        Observable minotiAlerta = new Observable();
         int alertas = 0;
         for (Notificacion minotiFicaciones : listarNotificaciones()) {
             if (Personal.getMipersonal().getIdentificacion().equals(minotiFicaciones.getPara())
@@ -83,5 +90,19 @@ public class NotificacionLogica implements NotificacionesEnviar {
     public String eliminarNotificacion(int id) {
         return miNoti.eliminarNotificacion(id);
     }
+
+    public Object ObtenerNotificacion(int id) {
+        Object miobjeto = new Object();
+        if (miPermisoM.buscarNotificacion(id)!=null) {
+         miobjeto = horasExtra.horasExtrabuscarNotificacion(id);
+            
+        } else {
+           miobjeto = miPermisoM.buscarNotificacion(id);
+        }
+
+        return miobjeto;
+    }
+
+    
 
 }

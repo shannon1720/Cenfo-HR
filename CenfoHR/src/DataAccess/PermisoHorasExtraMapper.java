@@ -54,5 +54,51 @@ public class PermisoHorasExtraMapper extends SqlConnection {
         return resultado;
 
     }
+
+    public Object horasExtrabuscarNotificacion(int id) {
+     PermisoHorasExtra minotificacion = null;
+       String consulta = "{Call dbo.buscarNotificacionHorasExtra('"+id+"')}";
+       Object buscarNotificacion = null;
+  
+        try {
+            conn = DriverManager.getConnection(connectionUrl);
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(consulta);
+            buscarNotificacion =new Object();
+           
+            while (rs.next()) {
+                minotificacion = new PermisoHorasExtra();
+                minotificacion.setId(rs.getInt("ID_OVERTIME"));
+                minotificacion.setFecha_horaExtra(rs.getDate("DATE"));
+                minotificacion.setEstado(rs.getBoolean("STATE"));
+                minotificacion.setNombreProyecto(rs.getString("PROYECT"));
+                minotificacion.setIdnotificacion(rs.getInt("ID_NOTIFICATION"));             
+                buscarNotificacion=minotificacion;
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (Exception e) {
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (Exception e) {
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception e) {
+                }
+            }
+        }
+        return buscarNotificacion;    
+    }
     
 }

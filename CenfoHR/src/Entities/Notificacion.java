@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author franciscosandoval
  */
-public class Notificacion implements Observador{
+public class Notificacion{
     private int id;
     private Date fechaNotificacion;
     private String asunto;
@@ -82,15 +82,6 @@ public class Notificacion implements Observador{
     public String toString() {
         return "Notificacion{" + "fechaNotificacion=" + fechaNotificacion + ", asunto=" + asunto + ", estado=" + estado + ", remitente=" + remitente + '}';
     }
-    @Override
-    public String alertaNotificacion(int notificacion) {
-        
-       return "Usted tiene "+notificacion+" notificacion(es) pendientes.";
-    }
-
-    @Override
-    public String alertaNotificacionDesicion(int notificacion) {
-    return "Usted tiene "+notificacion+" notificacion(es) respondidas.";
-    }
+    
      
 }
