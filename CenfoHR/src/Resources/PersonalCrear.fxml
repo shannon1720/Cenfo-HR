@@ -38,7 +38,7 @@
             <TextField fx:id="tfUrlDocumento" layoutX="300.0" layoutY="392.0" prefHeight="25.0" prefWidth="275.0" promptText="URL documento" />
             <Button fx:id="btnBuscar" layoutX="575.0" layoutY="392.0" mnemonicParsing="false" onAction="#buscarDocumento" text="Buscar" />
             <Label layoutX="603.0" layoutY="220.0" text="Nombre" />
-            <TextField fx:id="tfIdentificacion" layoutX="300.0" layoutY="218.0" prefHeight="25.0" prefWidth="275.0" promptText="Identificación" />
+            <TextField fx:id="tfcbGeneroIdentificacion" layoutX="300.0" layoutY="218.0" prefHeight="25.0" prefWidth="275.0" promptText="Identificación" />
             <Label layoutX="187.0" layoutY="425.0" prefHeight="25.0" prefWidth="67.0" text="Contraseña" />
             <TextField fx:id="tfClave" layoutX="300.0" layoutY="425.0" prefHeight="25.0" prefWidth="275.0" promptText="Contraseña" />
       </children>
