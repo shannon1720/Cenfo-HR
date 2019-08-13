@@ -27,7 +27,6 @@ import java.util.ArrayList;
  * @author franciscosandoval
  */
 public class PagosTableViewController implements Initializable {
-    
 
     @FXML
     private Button btnActualizar;
@@ -36,55 +35,55 @@ public class PagosTableViewController implements Initializable {
     void actualizarTablaPagos(ActionEvent event) {
         tblPagos.setItems(agregarPagosATabla());
     }
- 
+
     //configurar la tabla de pagos
-    @FXML private TableView<Pagos> tblPagos;
-    @FXML private TableColumn<Pagos, String> colMes;
-    @FXML private TableColumn<Pagos, Integer> colAnho;
-    @FXML private TableColumn<Pagos, Integer> colHorasTrabajadas;
-    @FXML private TableColumn<Pagos, Integer> colSalario;
-    
+    @FXML
+    private TableView<Pagos> tblPagos;
+    @FXML
+    private TableColumn<Pagos, String> colMes;
+    @FXML
+    private TableColumn<Pagos, Integer> colAnho;
+    @FXML
+    private TableColumn<Pagos, Integer> colHorasTrabajadas;
+    @FXML
+    private TableColumn<Pagos, Integer> colSalario;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
         //Set up the columns in the table
-        colMes.setCellValueFactory(new PropertyValueFactory<Pagos,String>("mes"));
-        colAnho.setCellValueFactory(new PropertyValueFactory<Pagos,Integer>("anho"));
-        colHorasTrabajadas.setCellValueFactory(new PropertyValueFactory<Pagos,Integer>("totalHorasPorMes"));
-        colSalario.setCellValueFactory(new PropertyValueFactory<Pagos,Integer>("totalAPagar"));
-        
+        colMes.setCellValueFactory(new PropertyValueFactory<Pagos, String>("mes"));
+        colAnho.setCellValueFactory(new PropertyValueFactory<Pagos, Integer>("anho"));
+        colHorasTrabajadas.setCellValueFactory(new PropertyValueFactory<Pagos, Integer>("totalHorasPorMes"));
+        colSalario.setCellValueFactory(new PropertyValueFactory<Pagos, Integer>("totalAPagar"));
+
         //load dummy data
-        
         tblPagos.setItems(agregarPagosATabla());
-        
+
     }
-    
+
     //Este metodo retorna un ObservableList de Pagos
-    
-    public ObservableList<Pagos> agregarPagosATabla()
-    {
+    public ObservableList<Pagos> agregarPagosATabla() {
         ObservableList<Pagos> tmpPagos = FXCollections.observableArrayList();
         ArrayList<Pagos> lstPagos = new ArrayList<Pagos>();
         lstPagos = getPagos(); //Llama a metodo que obtiene la lista de pagos de la base de datos
-        
-        for(Pagos iPago: lstPagos){
-            tmpPagos.add(new Pagos(iPago.getMes(),iPago.getAnho(),iPago.getTotalHorasPorMes()));
-            
+
+        for (Pagos iPago : lstPagos) {
+            tmpPagos.add(new Pagos(iPago.getMes(), iPago.getAnho(), iPago.getTotalHorasPorMes()));
+
         }
-        
+
         return tmpPagos;
-        
+
     }
-    
-    public ArrayList<Pagos> getPagos(){
+
+    public ArrayList<Pagos> getPagos() {
         ArrayList<Pagos> lstPagos = new ArrayList<Pagos>();
         String id_persona = Personal.getMipersonal().getIdentificacion(); //Cambiar este id por el del usuario loggeado
-        
+
         PagosMapper dataPagosBD = new PagosMapper();
         lstPagos = dataPagosBD.obtenerHorasLaborasPorFecha(id_persona);
         return lstPagos;
     }
-    
-    
-}
 
+}
