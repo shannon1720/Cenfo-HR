@@ -51,8 +51,9 @@ public class MenuController implements Initializable {
     private AnchorPane panelMenuEmpleado1;
 
     @FXML
-    void panelPerfil(ActionEvent event) {
-
+    void panelPerfil(ActionEvent event) throws IOException {
+        AnchorPane pane1 = FXMLLoader.load(getClass().getResource("/GUI/personal.fxml"));
+        panelPaCambiar.getChildren().setAll(pane1);
     }
 
     @FXML
