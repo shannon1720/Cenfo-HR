@@ -77,6 +77,10 @@ public class PermisoHorasExtra  {
         }else{ this.estado = "Rechazado";}
         
     }
+    
+     public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public int getId() {
         return id;

@@ -102,6 +102,8 @@ public class MenuController implements Initializable {
         alert2.setTitle("");
         alert2.setHeaderText("");
         alert2.setContentText(miNotificacion.notificardesicionTomada());
+        alert2.setX(422);
+        alert2.setY(400);
         alert2.show();
     }
 

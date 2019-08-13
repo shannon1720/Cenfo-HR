@@ -54,4 +54,53 @@ public class PermisoSalidaMapper extends SqlConnection {
 
         return resultado;
     }
+
+    public Object buscarNotificacion(int id) {
+       PermisoSalida minotificacion = null;
+       String consulta = "{Call dbo.buscarNotificacionPermiso('"+id+"')}";
+       Object buscarNotificacion = null;
+  
+        try {
+            conn = DriverManager.getConnection(connectionUrl);
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(consulta);
+            buscarNotificacion =new Object();
+           
+            while (rs.next()) {
+                minotificacion = new PermisoSalida();
+                minotificacion.setId(rs.getInt("ID_PERMIT"));
+                minotificacion.setFechaentrada(rs.getDate("ENTRANCE_DATE"));
+                minotificacion.setFechasalida(rs.getDate("FINAL_DATE"));
+                minotificacion.setDescripcion(rs.getString("DESCRIPTION"));
+                minotificacion.setTipoNotificacion(rs.getString("TYPE_PERMIT"));
+                minotificacion.setEstado(rs.getBoolean("STATE"));
+                minotificacion.setIdNotificacion(rs.getInt("ID_NOTIFICATION"));
+               
+                buscarNotificacion=minotificacion;
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (Exception e) {
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (Exception e) {
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception e) {
+                }
+            }
+        }
+        return buscarNotificacion; 
+    }
 }

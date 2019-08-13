@@ -109,7 +109,7 @@ public class NotifficacionesMapper extends SqlConnection {
             listarNotificaciones =new ArrayList<>();
            
             while (rs.next()) {
-                miNotificacion = new Notificacion();
+                miNotificacion = new Notificacion() {};
                 miNotificacion.setId(rs.getInt("ID_NOTIFICATION"));
                 miNotificacion.setAsunto(rs.getString("SUBJECT"));
                 miNotificacion.setFechaNotificacion(rs.getDate("DATE_NOTIFICATION"));
@@ -158,10 +158,10 @@ public class NotifficacionesMapper extends SqlConnection {
             stmt = conn.createStatement();
             stmt.execute(consulta);
 
-            resultado = "La notificacion se registró correctamente en el sistema.";
+            resultado = "La ha abierto correctamente en el sistema.";
 
         } catch (Exception error) {
-            resultado = "No se pudo registrar la notificacion, intentelo de nuevo " + error.getMessage();
+            resultado = "No se pudo abrir la notificacion, intentelo de nuevo " + error.getMessage();
 
         } finally {
 

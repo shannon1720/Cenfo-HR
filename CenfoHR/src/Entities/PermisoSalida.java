@@ -66,6 +66,14 @@ public class PermisoSalida {
         return estado;
     }
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void setTipoNotificacion(String tipoNotificacion) {
+        this.tipoNotificacion = tipoNotificacion;
+    }
+
     public void setEstado(Boolean estado) {
         
       if(estado){
