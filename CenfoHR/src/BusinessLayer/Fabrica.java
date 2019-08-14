@@ -5,6 +5,7 @@
  */
 package BusinessLayer;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -15,6 +16,7 @@ public interface Fabrica {
    
     public Object crearObjeto(Object miObjeto);
     public Object buscarObjeto(Object miObjeto);
+    public Object modificarObjeto(Object miObjeto);
     public ArrayList<Object> listarObjeto();
     public String eliminarObjeto(Object miOnjeto);
     

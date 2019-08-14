@@ -116,7 +116,7 @@ public class PersonaController implements Initializable {
             if (cbRol.getValue().equals("Supervisor")) {
                 rol = 2;
             } else {
-                if (cbRol.getValue().equals("Supervisor")) {
+                if (cbRol.getValue().equals("Empleado")) {
                     rol = 3;
                 }
             }

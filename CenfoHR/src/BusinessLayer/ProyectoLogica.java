@@ -13,13 +13,18 @@ import java.util.ArrayList;
  *
  * @author Tremi
  */
-public class ProyectoLogica implements Fabrica{
-    
+public class ProyectoLogica implements Fabrica {
+
     private ProyectosMapper proMapper = new ProyectosMapper();
-    
+
     @Override
     public Object crearObjeto(Object miObjeto) {
-        return proMapper.crearProyecto((Proyecto)miObjeto); 
+        return proMapper.crearProyecto((Proyecto) miObjeto);
+    }
+
+    @Override
+    public Object modificarObjeto(Object miObjeto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -36,5 +41,5 @@ public class ProyectoLogica implements Fabrica{
     public String eliminarObjeto(Object miOnjeto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
