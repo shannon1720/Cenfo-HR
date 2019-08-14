@@ -24,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -41,6 +42,7 @@ import javafx.stage.Stage;
 public class NotificacionesController implements Initializable {
 
     NotificacionLogica miNotificacion = new NotificacionLogica();
+    Notificacion notificacionSeleccionada;
     @FXML
     private Button btnBandeja;
     @FXML
@@ -67,10 +69,9 @@ public class NotificacionesController implements Initializable {
     private TextArea tfInfo;
     @FXML
     private Button btnEliminar;
-    
+
     @FXML
     private Button bntVer;
-  
 
     @FXML
     private Button btnRechazar;
@@ -78,16 +79,38 @@ public class NotificacionesController implements Initializable {
     @FXML
     private Button btnAceptar;
 
+    private int notificacionSeleccionada() {
+
+        return notificacionSeleccionada.getId();
+    }
+
     @FXML
     void aceptarNotificacion(ActionEvent event) {
-
+        // notificacionSeleccionada = tblNotificacion.getSelectionModel().getSelectedItem();
+        String CambiarEstado = miNotificacion.CambiarEstadoPermisos(notificacionSeleccionada(), "True");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("");
+        alert.setHeaderText("");
+        alert.setContentText(CambiarEstado);
+        alert.setX(422);
+        alert.setY(400);
+        alert.show();
+        tfInfo.setText("");
     }
-     @FXML
+
+    @FXML
     void rechazarNotificacion(ActionEvent event) {
-
+        //notificacionSeleccionada = tblNotificacion.getSelectionModel().getSelectedItem();
+        String CambiarEstado = miNotificacion.CambiarEstadoPermisos(notificacionSeleccionada(), "False");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("");
+        alert.setHeaderText("");
+        alert.setContentText(CambiarEstado);
+        alert.setX(422);
+        alert.setY(400);
+        alert.show();
+        tfInfo.setText("");
     }
-    
-    
 
     private void panelBandeja() {
         List<Notificacion> lstNotificaciones = miNotificacion.listarNotificaciones();
@@ -117,6 +140,7 @@ public class NotificacionesController implements Initializable {
         try {
             panelBandeja();
             tfInfo.setEditable(false);
+
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -124,48 +148,49 @@ public class NotificacionesController implements Initializable {
 
     @FXML
     void eliminarNotificacion(ActionEvent event) {
-        Notificacion notificacionSeleccionada = tblNotificacion.getSelectionModel().getSelectedItem();
+        notificacionSeleccionada = tblNotificacion.getSelectionModel().getSelectedItem();
         notificacionSeleccionada.getId();
-        miNotificacion.eliminarNotificacion(notificacionSeleccionada.getId());
+        miNotificacion.eliminarNotificacion(notificacionSeleccionada());
         panelBandeja();
 
     }
 
     @FXML
     void verNotificacion(ActionEvent event) throws IOException {
-        Notificacion notificacionSeleccionada = tblNotificacion.getSelectionModel().getSelectedItem();
-        String CambiarEstado = miNotificacion.CambiarEstado(notificacionSeleccionada.getId());
+        notificacionSeleccionada = tblNotificacion.getSelectionModel().getSelectedItem();
+        String CambiarEstado = miNotificacion.CambiarEstado(notificacionSeleccionada());
         panelBandeja();
-        Object notificacionObtenida = miNotificacion.ObtenerNotificacion(notificacionSeleccionada.getId());
-        crearPanel(notificacionObtenida,notificacionSeleccionada);
+        Object notificacionObtenida = miNotificacion.ObtenerNotificacion(notificacionSeleccionada());
+        crearPanel(notificacionObtenida, notificacionSeleccionada);
     }
-       private void crearPanel(Object notificacionObtenida, Notificacion notificacionSeleccionada) throws IOException {
+
+    private void crearPanel(Object notificacionObtenida, Notificacion notificacionSeleccionada) throws IOException {
         PermisoHorasExtra miExtra = new PermisoHorasExtra();
-        PermisoSalida miSalida=new PermisoSalida();
+        PermisoSalida miSalida = new PermisoSalida();
         String pattern = "dd/MM/yyyy";
         DateFormat df = new SimpleDateFormat(pattern);
-        String todayAsString="";
-        String info="";
-        try{
-        
-        miExtra=(PermisoHorasExtra) notificacionObtenida;
-        todayAsString = df.format(miExtra.getFecha_horaExtra().getTime());
-       
-        info=" Remitente:"+"\n "+notificacionSeleccionada.getRemitente()+
-                  "\n Asunto:"+"\n "+notificacionSeleccionada.getAsunto()+"\n Fecha:"+"\n "+todayAsString+"\n Horas extra reportadas:"+"\n "+miExtra.getHorasExtra()+
-                  "\n Nombre del proyecto:"+"\n "+miExtra.getNombreProyecto();
-        tfInfo.setText(info);
+        String todayAsString = "";
+        String info = "";
+        try {
 
-        }catch(Exception ex){
-            
-        miSalida=(PermisoSalida)notificacionObtenida;
-        todayAsString = df.format(notificacionSeleccionada.getFechaNotificacion().getTime());
-        String fechaE=df.format(miSalida.getFechaentrada().getTime());
-        String fechaS=df.format(miSalida.getFechasalida().getTime());
-        info=" Remitente:"+"\n "+notificacionSeleccionada.getRemitente()+
-                  "\n Asunto:"+"\n "+notificacionSeleccionada.getAsunto()+"\n Fecha:"+"\n "+todayAsString+"\n Tipo de permiso:"+"\n "+miSalida.getTipoNotificacion()+
-                  "\n Fecha salida:"+"\n "+fechaS+"\n Fecha entrada:"+"\n "+fechaE+"\n Descripción:"+"\n "+miSalida.getDescripcion();
-        tfInfo.setText(info);
+            miExtra = (PermisoHorasExtra) notificacionObtenida;
+            todayAsString = df.format(miExtra.getFecha_horaExtra().getTime());
+
+            info = " Remitente:" + "\n " + notificacionSeleccionada.getRemitente()
+                    + "\n Asunto:" + "\n " + notificacionSeleccionada.getAsunto() + "\n Fecha:" + "\n " + todayAsString + "\n Horas extra reportadas:" + "\n " + miExtra.getHorasExtra()
+                    + "\n Nombre del proyecto:" + "\n " + miExtra.getNombreProyecto();
+            tfInfo.setText(info);
+
+        } catch (Exception ex) {
+
+            miSalida = (PermisoSalida) notificacionObtenida;
+            todayAsString = df.format(notificacionSeleccionada.getFechaNotificacion().getTime());
+            String fechaE = df.format(miSalida.getFechaentrada().getTime());
+            String fechaS = df.format(miSalida.getFechasalida().getTime());
+            info = " Remitente:" + "\n " + notificacionSeleccionada.getRemitente()
+                    + "\n Asunto:" + "\n " + notificacionSeleccionada.getAsunto() + "\n Fecha:" + "\n " + todayAsString + "\n Tipo de permiso:" + "\n " + miSalida.getTipoNotificacion()
+                    + "\n Fecha salida:" + "\n " + fechaS + "\n Fecha entrada:" + "\n " + fechaE + "\n Descripción:" + "\n " + miSalida.getDescripcion();
+            tfInfo.setText(info);
         }
 
     }

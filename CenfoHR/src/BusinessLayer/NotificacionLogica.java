@@ -103,4 +103,14 @@ public class NotificacionLogica implements NotificacionesEnviar {
         return miobjeto;
     }
 
+    public String CambiarEstadoPermisos(int id,String estado) {
+            String mensaje="";
+        if (miPermisoM.buscarNotificacion(id)!=null) {
+            mensaje = miPermisoM.cambiarEstado(id,estado);
+        } else {
+            mensaje = horasExtra.cambiarEstado(id,estado);
+        }
+        return mensaje;
+    }
+
 }

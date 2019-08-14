@@ -101,5 +101,42 @@ public class PermisoHorasExtraMapper extends SqlConnection {
         }
         return buscarNotificacion;    
     }
+
+    public String cambiarEstado(int id,String estado) {
+         String consulta = "{Call dbo.cambiarEstadoHoras ('" +id+ "','"+estado+"')}";
+        String resultado;
+
+        try {
+            conn = DriverManager.getConnection(connectionUrl);
+            stmt = conn.createStatement();
+            stmt.execute(consulta);
+            resultado = "Su acción ha sido registrada.";
+
+        } catch (Exception error) {
+            resultado = "No se pudo enviar la notificacion, intentelo de nuevo " + error.getMessage();
+
+        } finally {
+
+            if (cst != null) {
+                try {
+                    cst.close();
+                } catch (Exception e) {
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (Exception e) {
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception e) {
+                }
+            }}
+
+        return resultado;
+    }
     
 }
