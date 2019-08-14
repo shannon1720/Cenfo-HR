@@ -7,6 +7,7 @@ package BusinessLayer;
 
 import DataAccess.ProyectosMapper;
 import Entities.Proyecto;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -27,18 +28,28 @@ public class ProyectoLogica implements Fabrica {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public Object buscarObjeto(Object miObjeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+  
+    public Object buscarProy(Object miObjeto) throws SQLException {
+        return proMapper.buscarProyecto(miObjeto);
     }
 
-    @Override
-    public ArrayList<Object> listarObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    public ArrayList<Proyecto> listarProyectos(String pObj) throws SQLException {
+        return  proMapper.listarProyectos(pObj);
     }
 
     @Override
     public String eliminarObjeto(Object miOnjeto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object buscarObjeto(Object miObjeto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    @Override
+    public ArrayList<Object> listarObjeto() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

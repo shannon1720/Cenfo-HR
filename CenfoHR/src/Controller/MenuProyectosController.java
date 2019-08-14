@@ -48,6 +48,8 @@ public class MenuProyectosController implements Initializable {
         panelProyectos.getChildren().setAll(pane1);
     }
 
+
+
     @FXML
     void panelListar(ActionEvent event) throws IOException {
         AnchorPane pane1 = FXMLLoader.load(getClass().getResource("/Resources/ListarProyectos.fxml"));
@@ -58,10 +60,10 @@ public class MenuProyectosController implements Initializable {
     void panelModificar(ActionEvent event) {
 
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }
