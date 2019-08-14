@@ -29,13 +29,13 @@ public class NotificacionLogica implements NotificacionesEnviar {
     public NotificacionLogica() {
     }
 
-    public ArrayList<Notificacion> listarNotificaciones() 
-    {
-            ArrayList<Notificacion> lstNotificaciones=new ArrayList<>();
+    public ArrayList<Notificacion> listarNotificaciones() {
+        ArrayList<Notificacion> lstNotificaciones = new ArrayList<>();
         for (Notificacion minotiFicaciones : miNoti.listarNotificaciones()) {
             if (Personal.getMipersonal().getIdentificacion().equals(minotiFicaciones.getPara())) {
-             lstNotificaciones.add(minotiFicaciones);
-            }}
+                lstNotificaciones.add(minotiFicaciones);
+            }
+        }
         return lstNotificaciones;
     }
 
@@ -94,15 +94,13 @@ public class NotificacionLogica implements NotificacionesEnviar {
     public Object ObtenerNotificacion(int id) {
         Object miobjeto = new Object();
         if (miPermisoM.buscarNotificacion(id)!=null) {
-         miobjeto = horasExtra.horasExtrabuscarNotificacion(id);
-            
+            //miobjeto = horasExtra.horasExtrabuscarNotificacion(id);
+            miobjeto = miPermisoM.buscarNotificacion(id);
         } else {
-           miobjeto = miPermisoM.buscarNotificacion(id);
+            miobjeto = horasExtra.horasExtrabuscarNotificacion(id);
         }
 
         return miobjeto;
     }
-
-    
 
 }

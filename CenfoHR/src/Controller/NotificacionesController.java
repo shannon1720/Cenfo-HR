@@ -8,6 +8,7 @@ package Controller;
 import BusinessLayer.NotificacionLogica;
 import Entities.Notificacion;
 import Entities.PermisoHorasExtra;
+import Entities.PermisoSalida;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -27,6 +28,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -61,62 +63,31 @@ public class NotificacionesController implements Initializable {
 
     @FXML
     private TableColumn<Notificacion, Date> colFecha;
-
+    @FXML
+    private TextArea tfInfo;
     @FXML
     private Button btnEliminar;
-    @FXML
-    private Label lbAsunto;
-    @FXML
-    private Label lbHorasReportadas;
-    @FXML
-    private Label lbProyecto;
-    @FXML
-    private Label lbRemitente;
-    @FXML
-    private Label lbFechaSalida;
-    @FXML
-    private Label lbTipoPermiso;
-    @FXML
-    private Label lbDescripcion;
-    @FXML
-    private Label lbFechaEntrada;
-    @FXML
-    private Label lbFechaHorasExtra;
-    @FXML
-    private Button btnRechazarP;
-    @FXML
-    private Button btnAceptarP;
-    @FXML
-    private Button btnRechazarH;
-    @FXML
-    private Button btnAceptarH;
-    @FXML
-    private VBox vbPermisoSalida;
-     @FXML
-    private AnchorPane vbHorasExtra;
-
-    @FXML
-    void aceptarNotificacionPermiso(ActionEvent event) {
-
-    }
-
-    @FXML
-    void rechazarNotificacionPermiso(ActionEvent event) {
-
-    }
-
-    @FXML
-    void aceptarNotificacionHoras(ActionEvent event) {
-
-    }
-
-    @FXML
-    void rechazarNotificacionHoras(ActionEvent event) {
-
-    }
-
+    
     @FXML
     private Button bntVer;
+  
+
+    @FXML
+    private Button btnRechazar;
+
+    @FXML
+    private Button btnAceptar;
+
+    @FXML
+    void aceptarNotificacion(ActionEvent event) {
+
+    }
+     @FXML
+    void rechazarNotificacion(ActionEvent event) {
+
+    }
+    
+    
 
     private void panelBandeja() {
         List<Notificacion> lstNotificaciones = miNotificacion.listarNotificaciones();
@@ -145,6 +116,7 @@ public class NotificacionesController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             panelBandeja();
+            tfInfo.setEditable(false);
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -168,20 +140,33 @@ public class NotificacionesController implements Initializable {
         crearPanel(notificacionObtenida,notificacionSeleccionada);
     }
        private void crearPanel(Object notificacionObtenida, Notificacion notificacionSeleccionada) throws IOException {
-        PermisoHorasExtra miExtra = (PermisoHorasExtra) notificacionObtenida;
-
+        PermisoHorasExtra miExtra = new PermisoHorasExtra();
+        PermisoSalida miSalida=new PermisoSalida();
         String pattern = "dd/MM/yyyy";
         DateFormat df = new SimpleDateFormat(pattern);
-        String todayAsString = df.format(miExtra.getFecha_horaExtra().getTime());
+        String todayAsString="";
+        String info="";
+        try{
+        
+        miExtra=(PermisoHorasExtra) notificacionObtenida;
+        todayAsString = df.format(miExtra.getFecha_horaExtra().getTime());
+       
+        info=" Remitente:"+"\n "+notificacionSeleccionada.getRemitente()+
+                  "\n Asunto:"+"\n "+notificacionSeleccionada.getAsunto()+"\n Fecha:"+"\n "+todayAsString+"\n Horas extra reportadas:"+"\n "+miExtra.getHorasExtra()+
+                  "\n Nombre del proyecto:"+"\n "+miExtra.getNombreProyecto();
+        tfInfo.setText(info);
 
-        AnchorPane pane4 = FXMLLoader.load(getClass().getResource("/Resources/HorasExtraVista.fxml"));
-        pnlNotificaciones.getChildren().setAll(pane4);
-
-//        lbFechaHorasExtra.setText(todayAsString);
-        lbAsunto.setText(notificacionSeleccionada.getAsunto());
-        lbRemitente.setText(notificacionSeleccionada.getRemitente());
-        lbProyecto.setText(miExtra.getNombreProyecto());
-        lbHorasReportadas.setText(String.valueOf(miExtra.getHorasExtra()));
+        }catch(Exception ex){
+            
+        miSalida=(PermisoSalida)notificacionObtenida;
+        todayAsString = df.format(notificacionSeleccionada.getFechaNotificacion().getTime());
+        String fechaE=df.format(miSalida.getFechaentrada().getTime());
+        String fechaS=df.format(miSalida.getFechasalida().getTime());
+        info=" Remitente:"+"\n "+notificacionSeleccionada.getRemitente()+
+                  "\n Asunto:"+"\n "+notificacionSeleccionada.getAsunto()+"\n Fecha:"+"\n "+todayAsString+"\n Tipo de permiso:"+"\n "+miSalida.getTipoNotificacion()+
+                  "\n Fecha salida:"+"\n "+fechaS+"\n Fecha entrada:"+"\n "+fechaE+"\n Descripción:"+"\n "+miSalida.getDescripcion();
+        tfInfo.setText(info);
+        }
 
     }
 }

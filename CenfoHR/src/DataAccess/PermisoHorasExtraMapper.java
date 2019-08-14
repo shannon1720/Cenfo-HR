@@ -18,7 +18,7 @@ public class PermisoHorasExtraMapper extends SqlConnection {
         java.sql.Date fecha = new java.sql.Date(miHorasExtra.getFecha_horaExtra().getTime());
         String consulta = "{Call dbo.crear_notificacion_horasExtra ('" + fecha + "','"
                 + miHorasExtra.getEstado() + "','"+ miHorasExtra.getIdnotificacion() + "','" 
-                + miHorasExtra.getNombreProyecto() + "')}";
+                + miHorasExtra.getNombreProyecto() + "','"+miHorasExtra.getHorasExtra()+"')}";
         String resultado;
 
         try {
@@ -72,7 +72,8 @@ public class PermisoHorasExtraMapper extends SqlConnection {
                 minotificacion.setFecha_horaExtra(rs.getDate("DATE"));
                 minotificacion.setEstado(rs.getBoolean("STATE"));
                 minotificacion.setNombreProyecto(rs.getString("PROYECT"));
-                minotificacion.setIdnotificacion(rs.getInt("ID_NOTIFICATION"));             
+                minotificacion.setIdnotificacion(rs.getInt("ID_NOTIFICATION")); 
+                 minotificacion.setHorasExtra(rs.getInt("HOURS")); 
                 buscarNotificacion=minotificacion;
             }
         } catch (Exception ex) {

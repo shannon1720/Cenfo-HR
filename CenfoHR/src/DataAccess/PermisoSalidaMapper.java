@@ -64,9 +64,10 @@ public class PermisoSalidaMapper extends SqlConnection {
             conn = DriverManager.getConnection(connectionUrl);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(consulta);
-            buscarNotificacion =new Object();
+            
            
             while (rs.next()) {
+                buscarNotificacion =new Object();
                 minotificacion = new PermisoSalida();
                 minotificacion.setId(rs.getInt("ID_PERMIT"));
                 minotificacion.setFechaentrada(rs.getDate("ENTRANCE_DATE"));
