@@ -13,14 +13,22 @@ import java.util.ArrayList;
  *
  * @author Alriosa
  */
-public class PersonalLogica implements Fabrica{
-    ArrayList<Personal> lstPersonal=new ArrayList<>();
-    private PersonalMapper miPersona= new PersonalMapper();
+public class PersonalLogica implements Fabrica {
+
+    ArrayList<Personal> lstPersonal = new ArrayList<>();
+    private PersonalMapper miPersona = new PersonalMapper();
+
     public PersonalLogica() {
     }
+
     @Override
     public Object crearObjeto(Object miObjeto) {
         return miPersona.crearObjeto(miObjeto);
+    }
+
+    @Override
+    public Object modificarObjeto(Object miObjeto) {
+        return miPersona.modificarObjeto(miObjeto);
     }
 
     @Override
@@ -37,6 +45,5 @@ public class PersonalLogica implements Fabrica{
     public String eliminarObjeto(Object miOnjeto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }

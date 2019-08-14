@@ -18,12 +18,12 @@ import java.util.ArrayList;
 public class PersonalMapper extends SqlConnection implements Fabrica {
 
     @Override
-    public Object crearObjeto(Object miObjeto){
-     Personal miPersonal = (Personal)miObjeto;
-    String consulta = "{Call dbo.crear_personal('"+miPersonal.getIdentificacion()+"','"+miPersonal.getNombre()+"','"+miPersonal.getApellidoUno()+"','"+miPersonal.getApellidoDos()+"','"+miPersonal.getFechaNacimiento()
-    +"','"+miPersonal.getFechaIngreso()+"','"+miPersonal.getGenero()+"','"+miPersonal.getContrasenna()+"','"+miPersonal.getGrado_academico()+"','"+miPersonal.getRol()+"','"+miPersonal.getMiMedia().getUrl()+"','"+miPersonal.getMiMedia().getTipo()+"')}";
-    String resultado ="";
-    try {
+    public Object crearObjeto(Object miObjeto) {
+        Personal miPersonal = (Personal) miObjeto;
+        String consulta = "{Call dbo.crear_personal('" + miPersonal.getIdentificacion() + "','" + miPersonal.getNombre() + "','" + miPersonal.getApellidoUno() + "','" + miPersonal.getApellidoDos() + "','" + miPersonal.getFechaNacimiento()
+                + "','" + miPersonal.getFechaIngreso() + "','" + miPersonal.getGenero() + "','" + miPersonal.getContrasenna() + "','" + miPersonal.getGrado_academico() + "','" + miPersonal.getRol() + "','" + miPersonal.getMiMedia().getUrl() + "','" + miPersonal.getMiMedia().getTipo() + "')}";
+        String resultado = "";
+        try {
             conn = DriverManager.getConnection(connectionUrl);
             stmt = conn.createStatement();
             stmt.execute(consulta);
@@ -54,23 +54,75 @@ public class PersonalMapper extends SqlConnection implements Fabrica {
                 }
             }
         }
-    return resultado;
+        return resultado;
     }
-    
-    
-  
-   @Override
+
+    @Override
+    public Object modificarObjeto(Object miObjeto) {
+        Personal miPersonal = (Personal) miObjeto;
+        
+        System.out.println("Id "+ miPersonal.getIdentificacion());
+        System.out.println("Nombre "+ miPersonal.getNombre());
+        System.out.println("Apellido 1 "+ miPersonal.getApellidoUno());
+        System.out.println("Apellido 2 "+ miPersonal.getApellidoDos());
+        System.out.println("Cumple "+ miPersonal.getFechaNacimiento());
+        System.out.println("Fecha "+ miPersonal.getFechaIngreso());
+        System.out.println("Gen "+ miPersonal.getGenero());
+        System.out.println("Pass "+ miPersonal.getContrasenna());
+        System.out.println("Grado "+ miPersonal.getGrado_academico());
+        System.out.println("Rol "+ miPersonal.getRol());
+        
+        String consulta = "{Call dbo.modificar_personal('" + miPersonal.getIdentificacion() + "','" + miPersonal.getNombre() 
+                + "','" + miPersonal.getApellidoUno() + "','" + miPersonal.getApellidoDos()
+                + "','" + miPersonal.getGenero() + "','" + miPersonal.getContrasenna()
+                + "')}";
+        String resultado = "";
+        try {
+            conn = DriverManager.getConnection(connectionUrl);
+            stmt = conn.createStatement();
+            stmt.execute(consulta);
+
+            resultado = "La persona se modifico correctamente en el sistema.";
+
+        } catch (Exception error) {
+            resultado = "No se pudo modificar la persona, intentelo de nuevo " + error.getMessage();
+
+        } finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (Exception e) {
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (Exception e) {
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception e) {
+                }
+            }
+        }
+        return resultado;
+    }
+
+    @Override
     public Object buscarObjeto(Object miObjeto) {
-       Personal miPersonal = null,miPersonal2=(Personal)miObjeto;
-       String consulta = "{Call dbo.buscarPersonal('"+miPersonal2.getIdentificacion()+"','"+miPersonal2.getContrasenna()+"')}";
-       Object buscarPersonal = null;
-  
+        Personal miPersonal = null, miPersonal2 = (Personal) miObjeto;
+        String consulta = "{Call dbo.buscarPersonal('" + miPersonal2.getIdentificacion() + "','" + miPersonal2.getContrasenna() + "')}";
+        Object buscarPersonal = null;
+
         try {
             conn = DriverManager.getConnection(connectionUrl);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(consulta);
-            buscarPersonal =new Object();
-           
+            buscarPersonal = new Object();
+
             while (rs.next()) {
                 miPersonal = new Personal();
                 miPersonal.setIdentificacion(rs.getString("ID"));
@@ -82,9 +134,9 @@ public class PersonalMapper extends SqlConnection implements Fabrica {
                 miPersonal.setGrado_academico(rs.getInt("ID_ACADEMIC_DEGREE"));
                 miPersonal.setFechaIngreso(rs.getDate("ADMISSION_DATE"));
                 miPersonal.setFechaNacimiento(rs.getDate("BIRTHDAY"));
-                MediaPersonal mimedia=new MediaPersonal(rs.getInt("ID_MEDIA"));
+                MediaPersonal mimedia = new MediaPersonal(rs.getInt("ID_MEDIA"));
                 miPersonal.setMiMedia(mimedia);
-                buscarPersonal=miPersonal;
+                buscarPersonal = miPersonal;
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -112,20 +164,17 @@ public class PersonalMapper extends SqlConnection implements Fabrica {
         return buscarPersonal;
     }
 
-   
-
     @Override
     public ArrayList<Object> listarObjeto() {
         Personal miPersonal = null;
-       String consulta = "{Call dbo.listar_personal()}";
-       ArrayList<Object> listaPersonal =new ArrayList<>();
-  
+        String consulta = "{Call dbo.listar_personal()}";
+        ArrayList<Object> listaPersonal = new ArrayList<>();
+
         try {
             conn = DriverManager.getConnection(connectionUrl);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(consulta);
-            
-           
+
             while (rs.next()) {
                 miPersonal = new Personal();
                 miPersonal.setIdentificacion(rs.getString("ID"));
@@ -137,7 +186,7 @@ public class PersonalMapper extends SqlConnection implements Fabrica {
                 miPersonal.setGrado_academico(rs.getInt("ID_ACADEMIC_DEGREE"));
                 miPersonal.setFechaIngreso(rs.getDate("ADMISSION_DATE"));
                 miPersonal.setFechaNacimiento(rs.getDate("BIRTHDAY"));
-                MediaPersonal mimedia=new MediaPersonal(rs.getInt("ID_MEDIA"));
+                MediaPersonal mimedia = new MediaPersonal(rs.getInt("ID_MEDIA"));
                 miPersonal.setMiMedia(mimedia);
                 listaPersonal.add(miPersonal);
             }
@@ -172,6 +221,4 @@ public class PersonalMapper extends SqlConnection implements Fabrica {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-    
 }
