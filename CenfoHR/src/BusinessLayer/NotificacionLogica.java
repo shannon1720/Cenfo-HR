@@ -88,7 +88,17 @@ public class NotificacionLogica implements NotificacionesEnviar {
     }
 
     public String eliminarNotificacion(int id) {
-        return miNoti.eliminarNotificacion(id);
+        
+         String mensaje="";
+        if (miPermisoM.buscarNotificacion(id)!=null) {
+            mensaje = miPermisoM.EliminarEstado(id);
+            miNoti.eliminarNotificacion(id);
+        } else {
+            mensaje = horasExtra.EliminarEstado(id);
+            miNoti.eliminarNotificacion(id);
+        }
+        return mensaje;
+     
     }
 
     public Object ObtenerNotificacion(int id) {

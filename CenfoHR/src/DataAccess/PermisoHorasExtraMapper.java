@@ -138,5 +138,45 @@ public class PermisoHorasExtraMapper extends SqlConnection {
 
         return resultado;
     }
+
+    public String EliminarEstado(int id) {
+         String consulta = "{Call dbo.eliminarNotificacionHoras('" + id + "')}";
+        String resultado;
+
+        try {
+            conn = DriverManager.getConnection(connectionUrl);
+            stmt = conn.createStatement();
+            stmt.execute(consulta);
+
+            resultado = "La eliminado correctamente del sistema.";
+
+        } catch (Exception error) {
+            resultado = "No se pudo eliminar la notificacion, intentelo de nuevo " + error.getMessage();
+
+        } finally {
+
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (Exception e) {
+                }
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (Exception e) {
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception e) {
+                }
+            }
+        }
+
+        return resultado;
+                 
+                 }
     
 }

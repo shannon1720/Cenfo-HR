@@ -150,7 +150,14 @@ public class NotificacionesController implements Initializable {
     void eliminarNotificacion(ActionEvent event) {
         notificacionSeleccionada = tblNotificacion.getSelectionModel().getSelectedItem();
         notificacionSeleccionada.getId();
-        miNotificacion.eliminarNotificacion(notificacionSeleccionada());
+        String cambiarEstado=miNotificacion.eliminarNotificacion(notificacionSeleccionada());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("");
+        alert.setHeaderText("");
+        alert.setContentText(cambiarEstado);
+        alert.setX(422);
+        alert.setY(400);
+        alert.show();
         panelBandeja();
 
     }
